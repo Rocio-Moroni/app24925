@@ -1,16 +1,35 @@
 import './NavBar.css'
+import Button from '../Button/Button'
 
-const NavBar = () => {
-    
+const NavBar = ({ title, ...rest }) => { //{ title: 'ecommerce ', color='red'}
+  // const { title, color } = props 
+  const handleCelular = () => {
+    console.log('Celular')
+  }
+
+  const handleTablet = () => {
+    console.log('Tablet')
+  }
+
+  const handleNotebook = () => {
+    console.log('Notebook')
+  }
+
   return (
-      <nav className="NavBar">
+      <nav className="NavBar" >
         <div>
-            <h3>MARKETapp</h3>
+            <h3>{title}</h3>
         </div>
         <div className="Categories">
-          <button className='Option'>Celulares</button>
-          <button className='Option'>PC</button>
-          <button className='Option'>Notebooks</button>
+          <Button handleClick={handleCelular}>
+            Celular
+          </Button>
+          <Button handleClick={handleTablet}>
+            Tablet
+          </Button>
+          <Button handleClick={handleNotebook}>
+            Notebook
+          </Button>
         </div>
       </nav>
   )
