@@ -1,5 +1,6 @@
 import './NavBar.css'
 import Button from '../Button/Button'
+import CartWidget from '../CartWidget/CartWidget'
 
 const NavBar = ({ title, ...rest }) => { //{ title: 'ecommerce ', color='red'}
   // const { title, color } = props 
@@ -31,6 +32,7 @@ const NavBar = ({ title, ...rest }) => { //{ title: 'ecommerce ', color='red'}
             Notebook
           </Button>
         </div>
+        <CartWidget />
       </nav>
   )
 }

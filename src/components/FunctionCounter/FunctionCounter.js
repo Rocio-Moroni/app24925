@@ -1,13 +1,42 @@
-const FunctionCounter = () => {
+import { useState, useEffect } from 'react'
 
-    var count = 0 //ESTO NO FUNCIONA
+const FunctionCounter = (props) => {
+    const [count, setCount] = useState(0) // = [state, setState]
+
+
+    useEffect(() => {
+        console.log('El componente se monto')
+        setCount(count + 1)
+        
+        return () => {
+            console.log('Me voy a desmontar')
+            setCount(0)          
+        }
+    }, [])
+    
+    useEffect(() => {
+        console.log('count cambio')
+
+        return () => {
+            console.log('return count')
+            if(count === 10) {
+                setCount(0)
+            }
+        }
+    }, [count])
+
+    // console.log('Voy a renderizar')
+      
 
     const decrement = () => {
-        count = count - 1
+        if(count > 0) {
+            setCount(count - 1)
+
+        }
     }
 
     const increment = () => {
-        count = count  + 1
+        setCount(count + 1)
     }
     
     return(
