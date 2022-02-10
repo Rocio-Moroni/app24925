@@ -1,7 +1,9 @@
+import './CartWidget.css'
+
 const CartWidget = () => {
     return(
-        <button className="Option" style={{ backgroundColor: 'white', color: 'black', fontSize: 14}}>
-            <img src="/images/cart.svg" alt='cart' style={{marginRight: 10}}/>
+        <button className="CartWidget">
+            <img src="/images/cart.svg" alt='cart' className='CartImg'/>
             0
         </button>
     );

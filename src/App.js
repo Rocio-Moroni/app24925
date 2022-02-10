@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import FunctionCounter from './components/FunctionCounter/FunctionCounter';
 import ClassCounter from './components/ClassCounter/ClassCounter';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 function App() {
   const [show, setShow] = useState(true)
@@ -10,9 +11,10 @@ function App() {
   return (
     <div className="App">
       <NavBar  title="ecommerce" color="red"/>
-      <button onClick={() => setShow(!show)}>Mostrar</button>
-      {show ? <FunctionCounter /> : null}
-      {/* <ClassCounter /> */}
+      <ItemListContainer greeting='Hello 24925' />
+      <button onClick={() => setShow(!show)}>{show ? 'Mostrar Class Counter' : 'Mostrar Function Counter'}</button>
+      {show ? <FunctionCounter /> : <ClassCounter />}
+      {/* {!show && <ClassCounter />} */}
     </div>
   );
 }

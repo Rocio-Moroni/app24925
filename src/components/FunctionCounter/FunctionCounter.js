@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const FunctionCounter = (props) => {
+const FunctionCounter = () => {
     const [count, setCount] = useState(0) // = [state, setState]
 
 
@@ -12,7 +12,7 @@ const FunctionCounter = (props) => {
             console.log('Me voy a desmontar')
             setCount(0)          
         }
-    }, [])
+    }, []) //eslint-disable-line
     
     useEffect(() => {
         console.log('count cambio')
