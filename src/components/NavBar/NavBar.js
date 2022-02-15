@@ -1,9 +1,8 @@
 import './NavBar.css'
-import Button from '../Button/Button'
 import CartWidget from '../CartWidget/CartWidget'
 
-const NavBar = ({ title, ...rest }) => { //{ title: 'ecommerce ', color='red'}
-  // const { title, color } = props 
+const NavBar = () => { //{ title: 'ecommerce ', color='red'}
+
   const handleCelular = () => {
     console.log('Celular')
   }
@@ -19,18 +18,18 @@ const NavBar = ({ title, ...rest }) => { //{ title: 'ecommerce ', color='red'}
   return (
       <nav className="NavBar" >
         <div>
-            <h3>{title}</h3>
+            <h3>Ecommerce</h3>
         </div>
         <div className="Categories">
-          <Button handleClick={handleCelular}>
+          <button className="Option" onClick={handleCelular}>
             Celular
-          </Button>
-          <Button handleClick={handleTablet}>
+          </button>
+          <button className="Option" onClick={handleTablet}>
             Tablet
-          </Button>
-          <Button handleClick={handleNotebook}>
+          </button>
+          <button className="Option" onClick={handleNotebook}>
             Notebook
-          </Button>
+          </button>
         </div>
         <CartWidget />
       </nav>
