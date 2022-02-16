@@ -12,10 +12,12 @@ export const getProducts = () => {
     })
 }
 
-export const getProduct = () => {
+export const getProduct = (id) => {
+    console.log(id)
     return new Promise((resolve) => {
+        const prod = products.find(p => p.id === id)
         setTimeout(() => {
-            resolve(products[0])
+            resolve(prod)
         }, 1000)
     })
 }

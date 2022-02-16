@@ -1,7 +1,7 @@
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
 
-const NavBar = () => { //{ title: 'ecommerce ', color='red'}
+const NavBar = ({ routing }) => { //{ title: 'ecommerce ', color='red'}
 
   const handleCelular = () => {
     console.log('Celular')
@@ -17,7 +17,7 @@ const NavBar = () => { //{ title: 'ecommerce ', color='red'}
 
   return (
       <nav className="NavBar" >
-        <div>
+        <div onClick={() => routing({ path: 'list', id: 1})}>
             <h3>Ecommerce</h3>
         </div>
         <div className="Categories">

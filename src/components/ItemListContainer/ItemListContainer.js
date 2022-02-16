@@ -6,7 +6,7 @@ import { getProducts } from '../../asyncmock'
 
 
 
-const ItemListContainer = ()=> {
+const ItemListContainer = ({ routing })=> {
     const [products, setProducts] = useState([])
 
     
@@ -24,7 +24,7 @@ const ItemListContainer = ()=> {
     
     return (
         <div className="ItemListContainer">
-            <ItemList products={products}/>
+            <ItemList products={products} routing={routing}/>
         </div>
     )    
     

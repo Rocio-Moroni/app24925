@@ -1,6 +1,6 @@
 import './Item.css'
 
-const Item = ({product}) => {
+const Item = ({product, routing}) => {
    
     return (
         <article className="CardItem">
@@ -18,6 +18,7 @@ const Item = ({product}) => {
                 </p>
             </section>           
             <footer className='ItemFooter'>
+                <button className='Option' onClick={() => routing({ path: 'detail', id: product.id })}>Ver Detalle</button>
             </footer>
         </article>
     )
