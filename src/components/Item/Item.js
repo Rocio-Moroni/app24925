@@ -6,11 +6,11 @@ const Item = ({product}) => {
         <article className="CardItem">
             <header className="Header">
                 <h2 className="ItemHeader">
-                    {product.title}
+                    {product.name}
                 </h2>
             </header>
             <picture>
-                <img src={product.thumbnail} alt={product.title} className="ItemImg"/>
+                <img src={product.img} alt={product.name} className="ItemImg"/>
             </picture>
             <section>
                 <p className="Info">

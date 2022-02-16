@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react'
 import './ItemListContainer.css'
 import ItemList from '../ItemList/ItemList'
+import { getProducts } from '../../asyncmock'
 
 
 
 
-const ItemListContainer = ({greeting = 'Hello'})=> {
+const ItemListContainer = ()=> {
     const [products, setProducts] = useState([])
 
     
     useEffect(() => {
-        fetch('https://api.mercadolibre.com/sites/MLA/search?q=iphone')
-            .then(response => {
-               return response.json()
-            }).then(res => {
-                setProducts(res.results)
-            })
-            
+        getProducts().then(item => {
+            setProducts(item)
+        }).catch(err  => {
+            console.log(err)
+        })
+
+        return (() => {
+            setProducts()
+        })          
     }, [])
     
     return (
         <div className="ItemListContainer">
-            <h1>{greeting}</h1>
             <ItemList products={products}/>
         </div>
     )    
