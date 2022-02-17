@@ -1,19 +1,8 @@
 import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
+import { NavLink } from 'react-router-dom'
 
 const NavBar = () => { //{ title: 'ecommerce ', color='red'}
-
-  const handleCelular = () => {
-    console.log('Celular')
-  }
-
-  const handleTablet = () => {
-    console.log('Tablet')
-  }
-
-  const handleNotebook = () => {
-    console.log('Notebook')
-  }
 
   return (
       <nav className="NavBar" >
@@ -21,15 +10,30 @@ const NavBar = () => { //{ title: 'ecommerce ', color='red'}
             <h3>Ecommerce</h3>
         </div>
         <div className="Categories">
-          <button className="Option" onClick={handleCelular}>
+          <NavLink
+            to={'/category/celular'}
+            className={({ isActive }) =>
+              isActive ? 'ActiveOption' : 'Option'
+            }
+          >
             Celular
-          </button>
-          <button className="Option" onClick={handleTablet}>
+          </NavLink>
+          <NavLink
+            to={'/category/tablet'}
+            className={({ isActive }) =>
+              isActive ? 'ActiveOption' : 'Option'
+            }
+          >
             Tablet
-          </button>
-          <button className="Option" onClick={handleNotebook}>
+          </NavLink>
+          <NavLink
+            to={'/category/notebook'}
+            className={({ isActive }) =>
+              isActive ? 'ActiveOption' : 'Option'
+            }
+          >
             Notebook
-          </button>
+          </NavLink>
         </div>
         <CartWidget />
       </nav>

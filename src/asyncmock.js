@@ -12,10 +12,11 @@ export const getProducts = () => {
     })
 }
 
-export const getProduct = () => {
+export const getProduct = (id) => {
     return new Promise((resolve) => {
+        const prod = products.find(p => p.id === parseInt(id))
         setTimeout(() => {
-            resolve(products[0])
+            resolve(prod)
         }, 1000)
     })
 }
