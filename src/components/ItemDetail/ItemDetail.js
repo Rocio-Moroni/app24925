@@ -1,29 +1,30 @@
 import './ItemDetail.css'
+import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetail = ({ product }) => {
     return (
         <article className="CardItem">
             <header className="Header">
                 <h2 className="ItemHeader">
-                    {product?.name}
+                    {product.name}
                 </h2>
             </header>
             <picture>
-                <img src={product?.img} alt={product?.name} className="ItemImg"/>
+                <img src={product.img} alt={product.name} className="ItemImg"/>
             </picture>
             <section>
                 <p className="Info">
-                    Categoria: {product?.category}
+                    Categoria: {product.category}
                 </p>
                 <p className="Info">
-                    Descripción: {product?.description}
+                    Descripción: {product.description}
                 </p>
                 <p className="Info">
-                    Precio: {product?.price}
+                    Precio: {product.price}
                 </p>
             </section>           
             <footer className='ItemFooter'>
-                
+               <ItemCount stock={product.stock} /> 
             </footer>
         </article>
     )
