@@ -17,6 +17,7 @@ const Cart = () => {
         comment: ''
     })
     const { products, clearCart, getTotal, removeItem } = useContext(CartContext)
+    
     const contactFormRef = useRef()
 
     const setNotification = useNotificationServices()
@@ -35,6 +36,26 @@ const Cart = () => {
             const batch = writeBatch(firestoreDb)
             const outOfStock = []
 
+            const executeOrder = () => {
+                if(outOfStock.length === 0) {
+                    addDoc(collection(firestoreDb, 'orders'), objOrder).then(({id}) => {
+                        batch.commit().then(() => {
+                            clearCart()
+                            setNotification('success', `La orden se genero exitosamente, su numero de orden es: ${id}`)
+                        })
+                    }).catch(error => {
+                        setNotification('error', error)
+                    }).finally(() => {
+                        setProcessingOrder(false)
+                    })
+                } else {
+                    outOfStock.forEach(prod => {
+                        setNotification('error', `El producto ${prod.name} no tiene stock disponible`)
+                        removeItem(prod.id)
+                    })          
+                }
+            }
+
             objOrder.items.forEach(prod => {
                 getDoc(doc(firestoreDb, 'products', prod.id)).then(response => {
                     if(response.data().stock >= prod.quantity) {
@@ -44,26 +65,15 @@ const Cart = () => {
                     } else {
                         outOfStock.push({ id: response.id, ...response.data()})    
                     }
-                })
-            })
-
-            if(outOfStock.length === 0) {
-                addDoc(collection(firestoreDb, 'orders'), objOrder).then(({id}) => {
-                    batch.commit().then(() => {
-                        clearCart()
-                        setNotification('success', `La orden se genero exitosamente, su numero de orden es: ${id}`)
-                    })
-                }).catch(error => {
-                    setNotification('error', error)
+                }).catch((error) => {
+                    console.log(error)
+                }).then(() => {
+                    executeOrder()
                 }).finally(() => {
                     setProcessingOrder(false)
                 })
-            } else {
-                outOfStock.forEach(prod => {
-                    setNotification('error', `El producto ${prod.name} no tiene stock disponible`)
-                    removeItem(prod.id)
-                })          
-            }
+            })
+            
         } else {
             setNotification('error', 'Debe completar los datos de contacto para generar la orden')
         }
