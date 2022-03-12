@@ -41,7 +41,6 @@ const Cart = () => {
             getDocs(query(collection(firestoreDb, 'products'),where(documentId(), 'in', ids)))
                 .then(response => {
                     response.docs.forEach((docSnapshot) => {
-                        console.log(docSnapshot.ref)
                         if(docSnapshot.data().stock >= objOrder.items.find(prod => prod.id === docSnapshot.id).quantity) {
                             batch.update(docSnapshot.ref, { stock: docSnapshot.data().stock - objOrder.items.find(prod => prod.id === docSnapshot.id).quantity})
                         } else {
